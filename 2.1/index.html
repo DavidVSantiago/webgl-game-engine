@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WebGL</title>
+</head>
+<body>
+    <canvas id="GLCanvas" width="640" height="480"></canvas>
+    <script type="module" src="./src/core.js"> </script>
+    
+    <!-- código GLSL-->
+    <script type="x-shader/x-vertex" id="VertexShader">
+        attribute vec3 aVertexPosition;
+        void main(void){
+            // variável do GLSL que representa cada vértice
+            gl_Position = vec4(aVertexPosition,1.0);
+        }
+    </script>
+    <script type="x-shader/x-fragment" id="FragmentShader">
+        // também conhecido como "pixelshader"
+        // executada para cada pixel a ser desenhado na tela
+        void main(void){
+            // gl_FragColor determina a cor do pixel
+            // neste caso, branco.
+            gl_FragColor = vec4(1.0,1,0,1.0);
+        }
+    </script>
+</body>
+</html>
