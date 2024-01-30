@@ -39,25 +39,34 @@ class SimpleShader{
             this.mProgram, // 
             "aVertexPosition" // 
         );
-        // obtêm a referência para o uniform "uPixelColor" do fShader
+        // obtém a referência para o uniform "uPixelColor" do fShader
         this.mPixelColorRef = this.glContext.getUniformLocation(
             this.mProgram, // 
             "uPixelColor" // 
         );
         
-        // obtêm a referência para o uniform "uModelXformMatrix" do vShader
+        // obtém a referência para o uniform "uModelXformMatrix" do vShader
         // este uniform é a matriz de transformação dos vértices
         this.mModelMatrixRef = this.glContext.getUniformLocation(
             this.mProgram, // 
             "uModelXformMatrix" // 
         );
+
+        // obtém a referência para o uniform 'uCameraXformMatrix' do vShader
+        // este uniform é a matriz de transformação da Camera
+        this.mCameraMatrixRef = this.glContext.getUniformLocation(
+            this.mProgram,//
+            'uCameraXformMatrix'
+        );
+
     }
 
     /** Métodos ---------------------------------------------- */
     // na ativação são definidos os valores dos 'atributos' e 'uniforms' para os shaders
     activate(
         pixelColor, // cor do pixel no fShader
-        trsMatrix // matriz de transformação para os vértices
+        trsMatrix, // matriz de transformação para os vértices
+        cameraMatrix// matriz de transformação da câmera
     ){
         // carrega o shader compilado para a memória da gpu
         this.glContext.useProgram(this.mProgram);
@@ -77,10 +86,14 @@ class SimpleShader{
         
         // ??
         this.glContext.enableVertexAttribArray(this.mVertexPositionRef);
+        
+        /** Copia dos operadores para os shaders na GPU */
         // atribui a cor do pixel no fShader
         this.glContext.uniform4fv(this.mPixelColorRef, pixelColor);
         // atribui a matriz de transformação 'trsMatrix' ao vShader
         this.glContext.uniformMatrix4fv(this.mModelMatrixRef,false,trsMatrix);
+        // atribui a matriz de transformação 'cameraMatrix' ao vShader
+        this.glContext.uniformMatrix4fv(this.mCameraMatrixRef,false,cameraMatrix);
     }
 
     loadAndCompileShader(filePath, shaderType){

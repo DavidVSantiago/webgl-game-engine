@@ -10,9 +10,9 @@ class Renderable {
         this.mXform = new Transform();
     }
 
-    draw() {
+    draw(cameraMatrix) {
         // configura os shaders com cor e dados de transformação
-        this.mShader.activate(this.mColor,this.mXform.getTRSMatrix()); // para ativar o shader
+        this.mShader.activate(this.mColor,this.mXform.getTRSMatrix(),cameraMatrix); // para ativar o shader
         // desenhamos as polígonos com base nas configurações setadas no comando anterior
         this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0, 4);
     }
