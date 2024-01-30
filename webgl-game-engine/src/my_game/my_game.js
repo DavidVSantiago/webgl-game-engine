@@ -41,22 +41,23 @@ class MyGame{
             600, // width of the area to be drawn
             300); // height of the area to be drawn
         // Step D3: enable scissor area, clear and then disable the scissor area
+        // Step E: Set up camera transform matrix
         gl.enable(gl.SCISSOR_TEST);
         this.engine.clearCanvas([0.8, 0.8, 0.8, 1.0]); // clear the scissor area
         gl.disable(gl.SCISSOR_TEST);
 
-        // Step E: Set up camera transform matrix
-        // assume camera position and dimension
+        // ponto central da câmera no WC (como essas coordenadas surgiram???)
         let cameraCenter = vec2.fromValues(20, 60);
+        // tamanho das coordenadas WC(esse é o ponto)
         let wcSize = vec2.fromValues(20, 10);
         let cameraMatrix = mat4.create();
         // Step E1: after translation, scale to: -1 to 1: a 2x2 square at origin
         mat4.scale(cameraMatrix, mat4.create(),
-                    vec3.fromValues(2.0/wcSize[0], 2.0/wcSize[1], 1.0));
+        vec3.fromValues(2.0/wcSize[0], 2.0/wcSize[1], 1.0));
         // Step E2: first to perform is to translate camera center to origin
         mat4.translate(cameraMatrix, cameraMatrix,
-                    vec3.fromValues(-cameraCenter[0], -cameraCenter[1], 0));
-        
+            vec3.fromValues(-cameraCenter[0], -cameraCenter[1], 0));
+            
         // Step F: Draw Renderable objects with the red shader
         // Step F: Draw the blue square
         // Center Blue, slightly rotated square
@@ -82,7 +83,8 @@ class MyGame{
         // bottom left
         this.mBLSq.getXform().setPosition(10, 55);
         this.mBLSq.draw(cameraMatrix);
-
+        
+        
     }
 }
 
