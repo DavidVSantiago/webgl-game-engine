@@ -1,4 +1,4 @@
-// passo 01 - prepara o canvas e o contexto webgl
+// passo 01 - prepara o canvas e o contexto webgl - dsdsdd
 var canvas =  document.getElementById('GLCanvas');
 var gl = canvas.getContext('experimental-webgl');
 
