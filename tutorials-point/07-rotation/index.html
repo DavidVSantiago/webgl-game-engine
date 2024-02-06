@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WebGL</title>
+</head>
+<body>
+    <canvas id="GLCanvas" width="300" height="300" onclick='running = !running;'>
+        Your browser does not support the HTML5 canvas.
+    </canvas>
+    <div>
+        <div style='display:inline-block;'>RX:</div>
+        <div style='display:inline-block; width:1.5em;'id='ax'>0</div>
+        <div style='display:inline-block;'>
+        <select id='dx'>
+            <option>-2<option>-1<option>0<option selected="selected">+1<option>+2
+        </select>
+        </div>
+    </div><br>
+    <div>
+        <div style='display:inline-block;'>RY:</div>
+        <div style='display:inline-block; width:1.5em;'id='ay'>0</div>
+        <div style='display:inline-block;'>
+        <select id='dy'>
+            <option>-2<option>-1<option>0<option selected="selected">+1<option>+2
+        </select>
+        </div>
+    </div><br>
+    <div>
+        <div style='display:inline-block;'>RZ:</div>
+        <div style='display:inline-block; width:1.5em;'id='az'>0</div>
+        <div style='display:inline-block;'>
+        <select id='dz'>
+            <option>-2<option>-1<option>0<option selected="selected">+1<option>+2
+        </select>
+        </div>
+    </div><br>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
