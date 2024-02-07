@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <script src="js/game.js"></script>
+    <script src="js/material.js"></script>
+    <script src="js/maths.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body {overflow: hidden;}
+        canvas{background:black;}
+    </style>
+    <script>
+        window.addEventListener('load',()=>{
+            window.game = new Game();
+            window.game.resize( // redimensiona o canvas com base no tamanho da tela
+                window.innerWidth,
+                window.innerHeight,
+            );
+            loop();
+        }); 
+        window.addEventListener('resize',()=>{
+            window.game.resize( // redimensiona o canvas com base no tamanho da tela
+                window.innerWidth,
+                window.innerHeight,
+            );
+        });
+    </script>
+    <script type="vertex_shader" id="vs_01">
+        attribute vec2 a_position;
+        attribute vec2 a_textCoord;
+        varying vec2 v_texCoord;
+        void main(void){
+            gl_Position = vec4(a_position,1,1);
+            v_texCoord = a_textCoord;
+        }
+    </script>
+    <script type="fragment_shader" id="fs_01">
+        precision mediump float;
+        uniform sampler2D u_image;
+        varying vec2 v_texCoord;
+        void main(void){
+            gl_FragColor = texture2D(u_image,v_texCoord);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
